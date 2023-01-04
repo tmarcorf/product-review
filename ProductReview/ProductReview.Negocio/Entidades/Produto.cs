@@ -1,12 +1,7 @@
 ﻿namespace ProductReview.Negocio.Entidades
 {
-    public class Produto
+    public class Produto : EntidadePersistente
     {
-        /// <summary>
-        /// O identificador do produto.
-        /// </summary>
-        public Guid Id { get; set; }
-
         /// <summary>
         /// O nome do produto.
         /// </summary>

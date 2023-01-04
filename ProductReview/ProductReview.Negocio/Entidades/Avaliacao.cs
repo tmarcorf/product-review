@@ -1,6 +1,6 @@
 ﻿namespace ProductReview.Negocio.Entidades
 {
-    public class Avaliacao
+    public class Avaliacao : EntidadePersistente
     {
         /// <summary>
         /// Identificador único do usuário que fez a avaliação.

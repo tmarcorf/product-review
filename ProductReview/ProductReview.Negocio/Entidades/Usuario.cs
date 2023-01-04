@@ -1,12 +1,7 @@
 ﻿namespace ProductReview.Negocio.Entidades
 {
-    public class Usuario
+    public class Usuario : EntidadePersistente
     {
-        /// <summary>
-        /// Identificador único do usuário.
-        /// </summary>
-        public Guid Id { get; set; }
-
         /// <summary>
         /// Primeiro nome do usuário.
         /// </summary>
