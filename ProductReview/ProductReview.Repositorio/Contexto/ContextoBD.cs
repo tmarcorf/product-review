@@ -6,16 +6,16 @@ namespace ProductReview.Repositorio.Contexto
     public class ContextoBD : IContextoBD
     {
         private readonly IMongoDatabase _bancoDeDados;
+        private const string NOME_DO_BANCO = "ProductReviewDatabase";
 
         /// <summary>
         /// O construtor da classe.
         /// </summary>
         /// <param name="stringDeConexao">A string de conexão.</param>
-        /// <param name="nomeDoBancoDeDados">O nome do banco de dados.</param>
-        public ContextoBD(string stringDeConexao, string nomeDoBancoDeDados)
+        public ContextoBD(string stringDeConexao)
         {
             var client = new MongoClient(stringDeConexao);
-            _bancoDeDados = client.GetDatabase(nomeDoBancoDeDados);
+            _bancoDeDados = client.GetDatabase(NOME_DO_BANCO);
         }
 
         /// <summary>
