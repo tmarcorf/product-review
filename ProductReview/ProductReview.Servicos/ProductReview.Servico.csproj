@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ProductReview.Negocio\ProductReview.Negocio.csproj" />
+    <ProjectReference Include="..\ProductReview.Repositorio\ProductReview.Repositorio.csproj" />
+  </ItemGroup>
+
 </Project>

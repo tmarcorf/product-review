@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProductReview.Repositorio.Interfaces
 {
-    public interface IRepositorioDeProduto
+    public interface IRepositorioDeProduto : IRepositorio<Produto>
     {
     }
 }

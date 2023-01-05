@@ -20,7 +20,7 @@ namespace ProductReview.Repositorio.Implementacoes
         /// </summary>
         /// <param name="id">O ID da entidade a ser consultada.</param>
         /// <returns>A entidade encontrada, ou null se não for encontrada.</returns>
-        public async Task<T> ConsultarPorId(Guid id)
+        public virtual async Task<T> ConsultarPorId(Guid id)
         {
             var entidade = await _colecao.FindAsync(x => x.Id == id);
 
@@ -32,7 +32,7 @@ namespace ProductReview.Repositorio.Implementacoes
         /// </summary>
         /// <param name="condicao">A condição que as entidades devem satisfazer.</param>
         /// <returns>Uma lista de entidades que satisfazem a condição.</returns>
-        public async Task<List<T>> ConsultarPor(Expression<Func<T, bool>> condicao)
+        public virtual async Task<List<T>> ConsultarPor(Expression<Func<T, bool>> condicao)
         {
             var entidades = await _colecao.FindAsync(condicao);
 
@@ -43,7 +43,7 @@ namespace ProductReview.Repositorio.Implementacoes
         /// Cadastra uma nova entidade no repositório.
         /// </summary>
         /// <param name="entidade">A entidade a ser cadastrada.</param>
-        public async Task Cadastrar(T entidade)
+        public virtual async Task Cadastrar(T entidade)
         {
             await _colecao.InsertOneAsync(entidade);
         }
@@ -53,7 +53,7 @@ namespace ProductReview.Repositorio.Implementacoes
         /// </summary>
         /// <param name="entidade">A entidade a ser atualizada.</param>
         /// <returns>A entidade atualizada.</returns>
-        public async Task<T> Atualizar(T entidade)
+        public virtual async Task<T> Atualizar(T entidade)
         {
             var entidadeExiste = _colecao.AsQueryable().Any(x => x.Id == entidade.Id);
 
@@ -70,7 +70,7 @@ namespace ProductReview.Repositorio.Implementacoes
         /// </summary>
         /// <param name="id">O ID da entidade a ser excluída.</param>
         /// <returns>true se a entidade foi excluída com sucesso, false caso contrário.</returns>
-        public async Task<bool> Excluir(Guid id)
+        public virtual async Task<bool> Excluir(Guid id)
         {
             var entidade = await ConsultarPorId(id);
 
