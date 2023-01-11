@@ -1,66 +1,65 @@
-﻿using ProductReview.Negocio.Entidades;
+﻿using ProductReview.Negocio.Dtos;
+using ProductReview.Negocio.Entidades;
 using ProductReview.Repositorio.Interfaces;
 using ProductReview.Servico.Interfaces;
 using System.Linq.Expressions;
 
 namespace ProductReview.Servico.Implementacoes
 {
-    public class ServicoDeProduto : IServicoDeProduto
+    public class ServicoDeProduto : ServicoPadrao<Produto>, IServicoDeProduto
     {
-        private readonly IRepositorioDeProduto _repositorioDeProduto;
-
-        public ServicoDeProduto(IRepositorioDeProduto repositorioDeProduto)
+        public ServicoDeProduto(IRepositorioDeProduto repositorio)
+            : base(repositorio)
         {
-            _repositorioDeProduto = repositorioDeProduto;
         }
 
         /// <summary>
-        /// Realiza a consulta de um produto pelo seu ID.
+        /// Recupera um produto através do seu identificador único.
         /// </summary>
-        /// <param name="id">O ID do produto a ser consultado.</param>
-        /// <returns>O produto encontrado, ou null se não for encontrado.</returns>
-        public async Task<Produto> ConsultarPorId(Guid id)
+        /// <param name="id">O identificador único do produto a ser recuperado.</param>
+        /// <returns>O produto com o identificador único especificado.</returns>
+        public override async Task<Produto> ConsultarPorId(Guid id)
         {
-            return await _repositorioDeProduto.ConsultarPorId(id);
+            return await base.ConsultarPorId(id);
         }
 
         /// <summary>
-        /// Realiza a consulta de produtos que satisfazem uma determinada condição.
+        /// Recupera uma lista de produtos que correspondem à condição especificada.
         /// </summary>
-        /// <param name="condicao">A condição que os produtos devem satisfazer.</param>
-        /// <returns>Uma lista de produtos que satisfazem a condição.</returns>
-        public async Task<List<Produto>> ConsultarPor(Expression<Func<Produto, bool>> condicao)
+        /// <param name="condicao">A condição para filtrar os produtos.</param>
+        /// <returns>Uma lista de produtos que correspondem à condição especificada.</returns>
+        public override async Task<List<Produto>> ConsultarPor(Expression<Func<Produto, bool>> condicao)
         {
-            return await _repositorioDeProduto.ConsultarPor(condicao);
+            return await base.ConsultarPor(condicao);
         }
 
         /// <summary>
-        /// Cadastra um novo produto no repositório.
+        /// Registra um novo produto.
         /// </summary>
-        /// <param name="produto">O produto a ser cadastrado.</param>
-        public async Task Cadastrar(Produto produto)
+        /// <param name="entidade">O produto a ser registrado.</param>
+        public override async Task Cadastrar(Produto entidade)
         {
-            await _repositorioDeProduto.Cadastrar(produto);
+            await base.Cadastrar(entidade);
         }
 
         /// <summary>
-        /// Atualiza um produto existente no repositório.
+        /// Atualiza um produto existente.
         /// </summary>
-        /// <param name="produto">O produto a ser atualizado.</param>
+        /// <param name="entidade">O produto a ser atualizado.</param>
         /// <returns>O produto atualizado.</returns>
-        public async Task<Produto> Atualizar(Produto produto)
+        public override async Task<Produto> Atualizar(Produto entidade)
         {
-            return await _repositorioDeProduto.Atualizar(produto);
+            return await base.Atualizar(entidade);
         }
 
         /// <summary>
-        /// Exclui um produto do repositório.
+        /// Exclui um produto existente através de seu identificador único.
         /// </summary>
-        /// <param name="id">O ID do produto a ser excluído.</param>
-        /// <returns>true se o produto foi excluído com sucesso, false caso contrário.</returns>
-        public async Task<bool> Excluir(Guid id)
+        /// <param name="id">O identificador único do produto a ser excluído.</param>
+        /// <returns>Retorna 'true' se a exclusão for bem-sucedida e 'false' caso contrário.</returns>
+        public override async Task<bool> Excluir(Guid id)
         {
-            return await _repositorioDeProduto.Excluir(id);
+            return await base.Excluir(id);
         }
     }
 }

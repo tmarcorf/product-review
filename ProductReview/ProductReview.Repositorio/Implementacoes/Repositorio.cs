@@ -12,7 +12,8 @@ namespace ProductReview.Repositorio.Implementacoes
 
         public Repositorio(IContextoBD contexto)
         {
-            _colecao = contexto.ObtenhaColecao<T>(typeof(T).Name);
+            var bancoDeDados = new MongoClient(contexto.StringDeConexao).GetDatabase(contexto.NomeDoBanco);
+            _colecao = bancoDeDados.GetCollection<T>(typeof(T).Name);
         }
 
         /// <summary>

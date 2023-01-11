@@ -1,3 +1,10 @@
+using Microsoft.Extensions.Options;
+using ProductReview.Repositorio.Contexto;
+using ProductReview.Repositorio.Implementacoes;
+using ProductReview.Repositorio.Interfaces;
+using ProductReview.Servico.Implementacoes;
+using ProductReview.Servico.Interfaces;
+
 namespace ProductReview.API
 {
     public class Program
@@ -5,13 +12,24 @@ namespace ProductReview.API
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            var services = builder.Services;
 
-            // Add services to the container.
+            // Adicionando contexto do banco de dados.
+            services.Configure<ContextoBD>(builder.Configuration.GetSection("ContextoBD"));
+            services.AddSingleton<IContextoBD>(
+                serviceProvider =>
+                serviceProvider.GetRequiredService<IOptions<ContextoBD>>().Value);
 
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            // Adicionando repositórios.
+            services.AddScoped(typeof(IRepositorio<>), typeof(Repositorio<>));
+            services.AddScoped<IRepositorioDeProduto, RepositorioDeProduto>();
+
+            // Adicionando serviços.
+            services.AddScoped<IServicoDeProduto, ServicoDeProduto>();
+
+            services.AddControllers();
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
 
             var app = builder.Build();
 
@@ -23,12 +41,8 @@ namespace ProductReview.API
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
-
             app.MapControllers();
-
             app.Run();
         }
     }

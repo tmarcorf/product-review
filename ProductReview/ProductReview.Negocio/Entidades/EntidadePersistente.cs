@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProductReview.Negocio.Entidades
 {
-    public class EntidadePersistente
+    public abstract class EntidadePersistente
     {
         /// <summary>
         /// Identificador único do usuário.
