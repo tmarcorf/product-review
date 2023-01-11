@@ -26,6 +26,7 @@ namespace ProductReview.API
 
             // Adicionando serviços.
             services.AddScoped<IServicoDeProduto, ServicoDeProduto>();
+            services.AddScoped<IServicoDeUsuario, ServicoDeUsuario>();
 
             services.AddControllers();
             services.AddEndpointsApiExplorer();

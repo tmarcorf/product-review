@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductReview.Repositorio.Interfaces
+namespace ProductReview.Servico.Interfaces
 {
-    public interface IRepositorioDeUsuario : IRepositorio<Usuario>
+    public interface IServicoDeUsuario : IServicoPadrao<Usuario>
     {
     }
 }
