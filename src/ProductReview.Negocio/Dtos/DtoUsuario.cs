@@ -1,6 +1,12 @@
-﻿namespace ProductReview.Negocio.Entidades
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ProductReview.Negocio.Dtos
 {
-    public class Usuario : EntidadePersistente
+    public class DtoUsuario : DtoPadrao
     {
         /// <summary>
         /// Primeiro nome do usuário.

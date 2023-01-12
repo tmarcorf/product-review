@@ -19,7 +19,7 @@ namespace ProductReview.API.Controllers
             _servico = servico;
         }
 
-        [HttpGet("id")]
+        [HttpGet("consulta/id")]
         public async Task<IActionResult> ConsultarPorId(string idProduto)
         {
             try
@@ -44,7 +44,7 @@ namespace ProductReview.API.Controllers
             }
         }
 
-        [HttpGet("nome")]
+        [HttpGet("consulta/nome")]
         public async Task<IActionResult> ConsultarPorNome(string nomeDoProduto)
         {
             try
@@ -67,7 +67,7 @@ namespace ProductReview.API.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost("cadastro")]
         public async Task<IActionResult> Cadastrar(DtoProduto dtoProduto)
         {
             try
@@ -88,7 +88,7 @@ namespace ProductReview.API.Controllers
 
         }
 
-        [HttpPut]
+        [HttpPut("atualizacao")]
         public async Task<IActionResult> Atualizar(DtoProduto dtoProduto)
         {
             try
@@ -101,10 +101,12 @@ namespace ProductReview.API.Controllers
                     return NotFound("O produto " + dtoProduto.Nome + " não foi encontrado.");
                 }
 
+                var dtoProdutoAtualizado = ConversorDeProduto.Instancia.Converta(await _servico.ConsultarPorId(produtoAtualizado.Id));
+
                 var retorno = new
                 {
                     mensagem = "O produto foi atualizado.",
-                    produto = produtoAtualizado
+                    produto = dtoProdutoAtualizado
                 };
 
                 return Ok(retorno);
@@ -115,7 +117,7 @@ namespace ProductReview.API.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("exclusao")]
         public async Task<IActionResult> Excluir(string idProduto)
         {
             try
@@ -123,14 +125,20 @@ namespace ProductReview.API.Controllers
                 Guid idGuid;
                 Guid.TryParse(idProduto, out idGuid);
 
-                var retorno = await _servico.Excluir(idGuid);
+                var retornoExclusao = await _servico.Excluir(idGuid);
 
-                if (!retorno)
+                if (!retornoExclusao)
                 {
                     return NotFound("Produto não foi excluído");
                 }
 
-                return Ok();
+                var retorno = new
+                {
+                    sucesso = retornoExclusao,
+                    mensagem = "O produto com o identificador " + idProduto + " foi excluído."
+                };
+
+                return Ok(retorno);
             }
             catch (Exception ex)
             {
