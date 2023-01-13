@@ -24,6 +24,7 @@ namespace ProductReview.API
             services.AddScoped(typeof(IRepositorio<>), typeof(Repositorio<>));
             services.AddScoped<IRepositorioDeProduto, RepositorioDeProduto>();
             services.AddScoped<IRepositorioDeUsuario, RepositorioDeUsuario>();
+            services.AddScoped<IRepositorioDeAvaliacao, RepositorioDeAvaliacao>();
 
             // Adicionando serviços.
             services.AddScoped<IServicoDeProduto, ServicoDeProduto>();
