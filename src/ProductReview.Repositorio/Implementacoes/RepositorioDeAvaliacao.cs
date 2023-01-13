@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProductReview.Repositorio.Implementacoes
 {
-    internal class RepositorioDeAvaliacao : Repositorio<Avaliacao>, IRepositorioDeAvaliacao
+    public class RepositorioDeAvaliacao : Repositorio<Avaliacao>, IRepositorioDeAvaliacao
     {
         public RepositorioDeAvaliacao(IContextoBD contexto) 
             : base(contexto)

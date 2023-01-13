@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProductReview.Negocio.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProductReview.Repositorio.Interfaces
 {
-    internal interface IRepositorioDeAvaliacao
+    public interface IRepositorioDeAvaliacao : IRepositorio<Avaliacao>
     {
     }
 }
