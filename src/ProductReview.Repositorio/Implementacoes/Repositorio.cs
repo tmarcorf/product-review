@@ -84,5 +84,15 @@ namespace ProductReview.Repositorio.Implementacoes
 
             return false;
         }
+
+        /// <summary>
+        /// Verifica se uma entidade existe no repositório.
+        /// </summary>
+        /// <param name="id">O identificador da entidade.</param>
+        /// <returns>True se a entidade existe, false caso contrário.</returns>
+        public virtual async Task<bool> Existe(Guid id)
+        {
+            return await _colecao.CountDocumentsAsync(x => x.Id == id) > 0;
+        }
     }
 }

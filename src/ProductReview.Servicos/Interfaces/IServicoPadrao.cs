@@ -45,5 +45,12 @@ namespace ProductReview.Servico.Interfaces
         /// <param name="id">O ID do entidade a ser excluído.</param>
         /// <returns>true se o entidade foi excluído com sucesso, false caso contrário.</returns>
         Task<bool> Excluir(Guid id);
+
+        /// <summary>
+        /// Verifica se uma entidade existe no repositório.
+        /// </summary>
+        /// <param name="id">O identificador da entidade.</param>
+        /// <returns>True se a entidade existe, false caso contrário.</returns>
+        Task<bool> Existe(Guid id);
     }
 }

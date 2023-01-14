@@ -9,7 +9,7 @@ namespace ProductReview.Negocio.Dtos
     /// <summary>
     /// Classe DtoAvaliacao que representa uma avaliação feita por um usuário em um produto.
     /// </summary>
-    public class DtoAvaliacao : DtoPadrao
+    public class DtoAvaliacao : DtoAvaliacaoBase
     {
         /// <summary>
         /// Propriedade DtoUsuario que representa o usuário que fez a avaliação.
@@ -21,19 +21,6 @@ namespace ProductReview.Negocio.Dtos
         /// </summary>
         public DtoProduto DtoProduto { get; set; }
 
-        /// <summary>
-        /// Propriedade Titulo que representa o título da avaliação.
-        /// </summary>
-        public string Titulo { get; set; }
-
-        /// <summary>
-        /// Propriedade Comentario que representa o comentário escrito na avaliação.
-        /// </summary>
-        public string Comentario { get; set; }
-
-        /// <summary>
-        /// Propriedade QuantidadeEstrelas que representa a quantidade de estrelas atribuídas na avaliação.
-        /// </summary>
-        public int QuantidadeEstrelas { get; set; }
+        
     }
 }

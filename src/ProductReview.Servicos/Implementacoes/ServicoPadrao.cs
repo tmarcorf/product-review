@@ -66,5 +66,15 @@ namespace ProductReview.Servico.Implementacoes
         {
             return await _repositorio.Excluir(id);
         }
+
+        /// <summary>
+        /// Verifica se uma entidade existe no repositório.
+        /// </summary>
+        /// <param name="id">O identificador da entidade.</param>
+        /// <returns>True se a entidade existe, false caso contrário.</returns>
+        public virtual async Task<bool> Existe(Guid id)
+        {
+            return await _repositorio.Existe(id);
+        }
     }
 }
